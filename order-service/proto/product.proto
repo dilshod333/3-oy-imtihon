@@ -1,0 +1,52 @@
+syntax="proto3";
+
+option go_package="./proto/gen3";
+
+message ProductRequest{
+    string name=1;
+    string type=2;
+    int32 quantity=3;
+    string description=4;
+    float  price=5;
+}
+
+message ProductId{
+    int32 product_id=1;
+
+}
+
+message EmptyList{}
+
+
+service ProductService{
+    rpc ListAllProduct(EmptyList) returns(stream ProductResponse);
+    rpc GetProducts(ProductId) returns(ProductResponse);
+    rpc CreateProducts(ProductRequest) returns(ProductResponse);
+    rpc UpdateProduct(UpdateProductReq) returns(ProductResponse);
+    rpc DeleteProduct(ProductId) returns(DeleteProductResponse); 
+}
+
+
+message ProductResponse{
+    int32 product_id=1;
+    string name=2;
+    string type=3;
+    int32 quantity=4;
+    string description=5;
+    float price=6;
+    string created_at=7;
+}
+
+
+message DeleteProductResponse{
+    string status=1;
+}
+
+message UpdateProductReq{
+    int32 product_id=1;
+    string name=2;
+    string type=3;
+    string description=4;
+    int32 quantity=5;
+    float price=6;
+}

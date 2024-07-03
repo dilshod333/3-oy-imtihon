@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+
+option go_package = "./gen1";
+
+message CreateOrderReq {
+    int32 user_id=1;
+    int32 product_id=2;
+    int32 quantity = 3;
+}
+message ListOrders {
+    repeated CreateOrderReq listord=1;
+}
+
+message CreateOrderResp {
+    int32 order_id = 1;
+    int32 user_id=2;
+    int32 product_id=3;
+    string name=4;
+    float price=5;
+    float total_price = 6; 
+    string order_time=7;
+}
+
+
+message Response{
+    string message=1;
+}
+
+
+service OrderService {
+    rpc CreateOrder(CreateOrderReq) returns (CreateOrderResp);
+    rpc CreateOrders(stream CreateOrderReq) returns (Response);
+    // rpc DeleteOrder(OrderReqId) returns (DeleteResp);
+}
