@@ -47,7 +47,7 @@ POST USER
     "name": "Dilshod",
     "age": 19,
     "email": "dilshoddimurodov@gmail.com",
-    "password": "Dilshod@2005"
+    "password": "Dilshodbek"
 
 }
 
